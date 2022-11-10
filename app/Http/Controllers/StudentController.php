@@ -23,6 +23,13 @@ public function create()
 
 public function store(Request $request)
 {
+    $this->validate($request, [
+        'name' => ['required', 'min:3'],
+        'address' => 'required',
+        'phone_number' => ['required' , 'numeric'],
+        'class' => 'required',
+    ]);
+
     $student = new Student();
     $student->name = $request->name;
     $student->address = $request->address;
@@ -30,6 +37,8 @@ public function store(Request $request)
     $student->class = $request->class;
 
     $student->save();
+
+    session()->flash('success', 'Data Berhasil Ditambahkan.');
 
     return redirect()->route('students.index');
      
@@ -53,7 +62,20 @@ public function store(Request $request)
         $student->class = $request->class;
     
         $student->save();
+
+        session()->flash('info', 'Data Berhasil Diperbarui.');
     
-        return redirect()->route('students.index');    
+        return redirect()->route('students.index');   
+    }
+
+    public function destroy($id)
+    {
+        $student = Student::find($id);
+
+        $student->delete();
+
+        session()->flash('danger', 'Data Berhasil Dihapus.');
+
+        return redirect()->route('students.index');
     }
 }

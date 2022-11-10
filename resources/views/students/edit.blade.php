@@ -1,8 +1,9 @@
 @extends('templates.default')
 
 @php
-  $title = 'Data Siswa';
-  $preTitle = 'Semua Data';
+  $title = 'Edit Data';
+  $preTitle = 'Data Siswa';
+@endphp
 
 @section('content')
     <div class="card">

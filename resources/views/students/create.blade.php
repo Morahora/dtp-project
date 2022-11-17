@@ -33,13 +33,15 @@
             
             <div class="mb-3">
                 <label for="" class="form-label">No.Telepon</label>
-                <input type="text" name="phone_number" class="form-control @error('phone_number')is-invalid @enderror"
-                name="example-text-input" placeholder="Masukkan No. Telepon" value={{ old ('phone_number') }}>
+                <input type="text" name="phone_number" 
+                  class="form-control @error('phone_number') 
+                    is-invalid 
+                  @enderror"
+                  name="example-text-input" placeholder="Masukkan No. Telepon" value={{ old ('phone_number') }}>
+                @error('phone_number')
+                  <span class="invalid-feedback">{{ $message }}</span>
 
-                  @error('phone_number')
-                <span class="invalid-feedback">{{ $message }}</span>
-
-                  @enderror
+                @enderror
               </div>
 
             <div class="mb-3">

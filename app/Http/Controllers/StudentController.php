@@ -53,9 +53,15 @@ public function store(Request $request)
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'name' => ['required', 'min:3'],
+            'address' => 'required',
+            'phone_number' => ['required' , 'numeric'],
+            'class' => 'required',
+        ]);
+    
         $student = Student::find($id);
 
-        $student = new Student();
         $student->name = $request->name;
         $student->address = $request->address;
         $student->phone_number = $request->phone_number;
